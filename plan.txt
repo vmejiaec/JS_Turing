@@ -1,0 +1,10 @@
+JS Turing
+=========
+Turing Machine Emulator
+
+1.- Kernel
+2.- Unit tests
+3.- Interface
+4.- Manage turing code files
+5.- Debugging unit
+6.- Turing compiler
