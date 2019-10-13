@@ -2,6 +2,7 @@ JS Turing
 =========
 Turing Machine Emulator
 
+0.- Install into Victor-PC and Workoffice.
 1.- Kernel
 2.- Unit tests
 3.- Interface
