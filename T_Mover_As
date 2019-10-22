@@ -1,0 +1,19 @@
+Desc: Coloca las letras As al inicio de la cadena de letras Bs
+Cinta inicial: ABAABABB
+Cinta final: AAAABBBB
+Estado inicial: inicio
+
+Programas:
+inicio     B B  R  inicio
+inicio     A B  L  encontrada
+inicio     _ _  L  regreso
+
+encontrada B B  L  encontrada
+encontrada _ _  R  PonX
+encontrada X X  L  encontrada
+
+PonX       B X  R  inicio
+PonX       X X  R  PonX
+
+regreso    B B  L  regreso
+regreso    X A  L  regreso
