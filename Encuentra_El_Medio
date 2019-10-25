@@ -1,0 +1,29 @@
+inicio A A  R   VerY
+VerY   _ _  L   Fin    ; Caso A
+VerY   A A  L   PonX   ; Caso AAA
+PonX   A X  R   VoyDer  
+
+VoyDer A A  R   VoyDer ; Busca el final
+VoyDer _ _  L   VerX 
+VoyDer Y Y  L   VerX 
+
+VerX   A A  L   VoyIzq ; Verifica Izq
+VoyIzq A A  R   PonY 
+
+PonY   A Y  L   Reg    ; Busca el inicio
+Reg    A A  L   Reg
+Reg    X X  R   inicio
+
+VerY   Y Y  L   VoyIni ; Verifica Der
+
+VoyIni A *  L   VoyIni ; Medio encontrado
+
+VoyIni X X  L   VoyIni ; Arregla todo
+VoyIni _ _  R   RempXA 
+RempXA X A  R   RempXA 
+RempXA * *  R   VoyFin
+VoyFin Y Y  R   VoyFin 
+VoyFin _ _  L   RempYA
+RempYA Y A  L   RempYA 
+RempYA * A  L   Ultimo
+Ultimo A A  R   Fin
