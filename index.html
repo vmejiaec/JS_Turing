@@ -5,15 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="lib/codemirror.css">
+    <style>
+            .breakpoints {width: .8em;}
+            .breakpoint { color: rgb(39, 179, 69); }
+            .CodeMirror {border: 1px solid #aaa;}
+    </style>
 </head>
 <body>
-    <h1>Un emulador de la máquina de Turing</h1>
-    <h2>El primer episodio</h2>
-    <p>Primero vamos a establecer un ambiente de desarrollo con los siguientes elementos:</p>
-    <ol>
-        <li>Control de código con Git en Visual Studio</li>
-        <li>Unidades de prueba Unit test</li>
-        <li>Primeras funciones del esqueleto del emulador</li>
-    </ol>
+    <h1>La cinta</h1>
+    <div id="TuringMachine">
+        <label id="TCinta">Cinta</label>
+        <br>
+        <label>Estado: </label> 
+        <label id="TEstado">Estado</label>
+    </div>
+    <form style="width: 400px;">
+        <textarea id="code" name="code">...</textarea>
+    </form>
+    <div>
+        <button id="TCarga" type="button" onclick="carga()">Carga</button>
+        <button id="TRun" type="button" onclick="run()">Run</button>
+    </div>
+    <!--Librería CodeMirror para simular editor en textArea-->
+    <script src="lib/codemirror.js"></script>
+    <script src="lib/mode/javascript/javascript.js"></script>
+    <script src="lib/addon/selection/active-line.js"></script>>
+    <!--La librería Turing-->
+    <script src="js/TM_Clases.js"></script>
+    <script src="js/TM_Ejemplos.js"></script>
+    <script src="js/TuringEmul.js"></script>
 </body>
 </html>
