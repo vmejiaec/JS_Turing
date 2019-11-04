@@ -12,6 +12,7 @@
             .breakpoints {width: .8em;}
             .breakpoint { color: rgb(39, 179, 69); }
             .CodeMirror {border: 1px solid #aaa;}
+            .styled-background { background-color: #ff7; 
     </style>
 </head>
 <body>
@@ -28,7 +29,7 @@
     <div>
         <button id="Cargar" type="button" onclick="carga()">Carga</button>
         <button id="Run" type="button" onclick="run()">Run</button>
-        <button id="Marcar" type="button" onclick="marcar()">Marcar</button>
+        <button id="Marcar" type="button" onclick="marcar(4)">Marcar</button>
     </div>
     <!--Librería CodeMirror para simular editor en textArea-->
     <script src="lib/codemirror.js"></script>
@@ -42,6 +43,7 @@
     <script src="lib/addon/search/matchesonscrollbar.js"></script>
     <script src="lib/addon/search/jump-to-line.js"></script>
 
+    <script src="../addon/selection/mark-selection.js"></script>
     <!--La librería Turing-->
     <script src="js/TM_Clases.js"></script>
     <script src="js/TM_Ejemplos.js"></script>

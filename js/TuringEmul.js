@@ -43,4 +43,6 @@ function run(){
     publicarTM(tm_actual);
 }
 
-function marcar()
+function marcar(linea){
+    editor.markText({line: linea, ch: 1}, {line: linea, ch: 100}, {className: "styled-background"});
+}
