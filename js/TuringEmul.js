@@ -42,3 +42,5 @@ function run(){
 
     publicarTM(tm_actual);
 }
+
+function marcar()
