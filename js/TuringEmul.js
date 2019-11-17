@@ -24,9 +24,15 @@ function makeMarker() {
 }
   
 function publicarTM(tm){
-    document.getElementById("TCinta").innerText = tm.cinta;
+    document.getElementById("TCinta").innerHTML = tm.cintaHtml();
     document.getElementById("TEstado").innerText = tm.estado;
     editor.setValue(tm.code);
+}
+
+function capturarTM(tm){
+    tm.cinta = document.getElementById("TCinta").innerText ;
+    tm.estado = document.getElementById("TEstado").innerText;
+    tm.code = editor.getValue();
 }
 
 function carga(){
@@ -36,10 +42,8 @@ function carga(){
 }
 
 function run(){
-    tm_actual.estado = "Corriendo";
-    tm_actual.cinta = "00>1011";
-    tm_actual.code = "Adivina que sigue???!!!";
-
+    capturarTM(tm_actual);
+    tm_actual.ejecUnaVez();
     publicarTM(tm_actual);
 }
 
