@@ -12,27 +12,46 @@
             .breakpoints {width: .8em;}
             .breakpoint { color: rgb(39, 179, 69); }
             .CodeMirror {border: 1px solid #aaa;}
-            .styled-background { background-color: #ff7; }
+            .styled-background { background-color: #77ff33; }
             .TCabeza { color: red ; display:inline; margin:2px;text-decoration: underline wavy ; font-size:large;}
     </style>
 </head>
 <body>
-    <h1>La cinta</h1>
+    <h1>La Máquina de Turing</h1>
     <div id="TuringMachine">
         <label id="lblCinta">Cinta</label>
         <div id="TCinta">11<div class="TCabeza">0</div>1000</div>
+        <input type="text" id=TCintaEdit size="100%">
         <br>
-        <label>Estado: </label> 
-        <label id="TEstado">Estado</label>
+            <table>
+                <tbody>
+                    <tr>
+                    <td >Pos:</td>
+                    <td style="width: 50px;"><label id="TPos"> </label></td>
+                    <td><input type="text" id="TPosEdit"></td>
+                    </tr>
+                    <tr>
+                    <td >Estado:</td>
+                    <td style="width: 50px;"><label id="TEstado"> </label></td>
+                    <td><input type="text" id="TEstadoEdit"></td>
+                    </tr>
+                    <tr>
+                    <td >No Línea: </td>
+                    <td style="width: 50px;"><label id="TLinea"> </label></td>
+                    <td >Parada: <label id="TParada"> </label></td>
+                    </tr>
+                </tbody>
+            </table>        
     </div>
-    <form style="width: 400px;">
-        <textarea id="code" name="code">...</textarea>
-    </form>
     <div>
         <button id="Cargar" type="button" onclick="carga()">Carga</button>
         <button id="Run" type="button" onclick="run()">Run</button>
         <button id="Marcar" type="button" onclick="marcar(4)">Marcar</button>
     </div>
+    <form style="width: 400px;">
+        <textarea id="code" name="code">...</textarea>
+    </form>
+
     <!--Librería CodeMirror para simular editor en textArea-->
     <script src="lib/codemirror.js"></script>
     <script src="lib/mode/javascript/javascript.js"></script>

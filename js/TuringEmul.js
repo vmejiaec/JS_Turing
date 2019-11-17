@@ -1,5 +1,12 @@
 'use strict';
 
+//  Por si el navegador no tiene la función trim 
+//if(typeof String.prototype.trim !== 'function') {
+//    String.prototype.trim = function() {
+//        return this.replace(/^\s+|\s+$/g, ''); 
+//    }
+//}
+
 var tm_actual = TM_Ejemplo();
 var editor = CodeMirror.fromTextArea(document.getElementById("code"), 
     {   
@@ -24,14 +31,26 @@ function makeMarker() {
 }
   
 function publicarTM(tm){
+    // TODO 
+    // Debería provenir de la clase TM con un HTML preformateado listo para salir a la página web
     document.getElementById("TCinta").innerHTML = tm.cintaHtml();
     document.getElementById("TEstado").innerText = tm.estado;
+    document.getElementById("TParada").innerText = tm.parada;
+    document.getElementById("TPos").innerText = tm.posCabeza;
+    document.getElementById("TLinea").innerText = tm.lineaEjec;
     editor.setValue(tm.code);
+    if (!tm.parada) marcar(tm.lineaEjec);
+
+    // Publico en los campos de edición
+    document.getElementById("TCintaEdit").value = tm.cinta;
+    document.getElementById("TEstadoEdit").value = tm.estado;
+    document.getElementById("TPosEdit").value = tm.posCabeza;
 }
 
 function capturarTM(tm){
-    tm.cinta = document.getElementById("TCinta").innerText ;
-    tm.estado = document.getElementById("TEstado").innerText;
+    tm.cinta = document.getElementById("TCintaEdit").value ;
+    tm.estado = document.getElementById("TEstadoEdit").value;
+    tm.posCabeza = parseInt( document.getElementById("TPosEdit").value );
     tm.code = editor.getValue();
 }
 
@@ -43,10 +62,10 @@ function carga(){
 
 function run(){
     capturarTM(tm_actual);
-    tm_actual.ejecUnaVez();
+    var seEjecuto = tm_actual.ejecUnaVez();
     publicarTM(tm_actual);
 }
 
 function marcar(linea){
-    editor.markText({line: linea, ch: 1}, {line: linea, ch: 100}, {className: "styled-background"});
+    editor.markText({line: linea, ch: 0}, {line: linea, ch: 100}, {className: "styled-background"});
 }

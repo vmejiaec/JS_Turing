@@ -8,12 +8,21 @@ function TM_Ejemplo(){
         "Inicio",
         "Inicio 0 0 R Inicio "  + "\n" +
         "Inicio 1 1 R Inicio "  + "\n" +
-        "Inicio _ _ L Salto "     + "\n" +
-        "Salto 0 0 R Salto "  + "\n" +
-        "Salto 1 1 R Regresa "  + "\n" +
-        "Regresa _ _ L Fin "     + "\n" +
-        "Inicio A A L Salto "     + "\n" +
-        "Salto B B R Salto "  + "\n" +
+        "Inicio 2 1 L Salto "   + "\n" +
+        "Inicio 3 2 L Salto "   + "\n" +
+        "Inicio 4 3 L Salto "   + "\n" +
+        "Inicio 5 4 L Salto "   + "\n" +
+        "Salto 0 0 R Salto "    + "\n" +
+        "Salto 1 1 L Regresa "  + "\n" +
+        "Salto 4 3 L Regresa "  + "\n" +
+        "Salto 5 4 L Regresa "  + "\n" +
+        "Regresa 0 0 R Inicio " + "\n" +
+        "Regresa 1 1 L Regresa "+ "\n" +
+        "Regresa 2 1 L Fin "    + "\n" +
+        "Regresa 3 2 L Fin "    + "\n" +
+        "Fin 1 1 L Inicio "     + "\n" +
+        "Inicio A A L Salto "   + "\n" +
+        "Salto B B R Salto "    + "\n" +
         "Salto X y R Regresa "  
         );
     return tm_eje01;
