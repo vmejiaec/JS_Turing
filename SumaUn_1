@@ -1,0 +1,14 @@
+inicio 0 0 R AlFinal
+AlFinal 0 0 R AlFinal
+AlFinal 1 1 R AlFinal
+AlFinal _ _ L Suma1
+
+Suma1 0 1 L Regresa
+
+Regresa 0 0 L Regresa
+Regresa 1 1 L Regresa
+Regresa _ _ R Fin
+
+Suma1 1 0 L Llevo1
+Llevo1 0 1 L Regresa
+Llevo1 1 0 L Llevo1
