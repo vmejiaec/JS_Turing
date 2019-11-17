@@ -13,23 +13,21 @@ function TMachine (id, cinta, posCabeza, estado, code) {
     this.lineaEjec   = -1;  // la siguiente línea a ejecutarse
 }
 
-TMachine.prototype.ejecUnaVez = function() {
-    var posCabezaActual = this.posCabeza;
-    var celdaActual = this.cinta.substring(this.posCabeza,this.posCabeza+1);
-    var estadoActual = this.estado;
+TMachine.prototype.celda = function(){
+    return this.cinta.substring(this.posCabeza,this.posCabeza+1);
+}
 
+TMachine.prototype.ejecUnaVez = function() {
     var codeLineas = this.code.split('\n');   
     var encontrado = false;
     var instrucciones = '';
-    var noLineaEjec = null;
 
     // Encuentra la instrucción a ejecutar.
     for (var i=0 ; i<codeLineas.length;i++){
         instrucciones = codeLineas[i].split(' ');
-        if (estadoActual == instrucciones[0]) {
-            if (celdaActual == instrucciones[1]) {
+        if (this.estado == instrucciones[0]) {
+            if (this.celda() == instrucciones[1]) {
                 encontrado = true;
-                noLineaEjec = i;
                 break;
             }
         }
@@ -37,11 +35,10 @@ TMachine.prototype.ejecUnaVez = function() {
 
     if (encontrado){
         this.estado = instrucciones[4];
-        celdaNueva = instrucciones[2];
         
         var cintaPre = this.cinta.substring(0,this.posCabeza);
         var cintaPos = this.cinta.substring(this.posCabeza+1,this.cinta.length);
-        this.cinta = cintaPre + celdaNueva + cintaPos ;
+        this.cinta = cintaPre + instrucciones[2] + cintaPos ;
 
         // Mueve la cabeza a la derecha R o a la izquierda L
         var pos = this.posCabeza;
