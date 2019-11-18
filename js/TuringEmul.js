@@ -39,7 +39,8 @@ function publicarTM(tm){
     document.getElementById("TPos").innerText = tm.posCabeza;
     document.getElementById("TLinea").innerText = tm.lineaEjec;
     editor.setValue(tm.code);
-    if (!tm.parada) marcar(tm.lineaEjec);
+    if (!tm.parada) 
+        ponerBackground(tm.lineaEjec);
 
     // Publico en los campos de edición
     document.getElementById("TCintaEdit").value = tm.cinta;
@@ -57,7 +58,7 @@ function publicarTMsinCodigo(tm){
     document.getElementById("TLinea").innerText = tm.lineaEjec;
     //editor.setValue(tm.code);
     if (!tm.parada) 
-        highlightLine(tm.lineaEjec);
+        ponerBackground(tm.lineaEjec);
 
     // Publico en los campos de edición
     document.getElementById("TCintaEdit").value = tm.cinta;
@@ -80,6 +81,7 @@ function carga(){
 
 function run(){
     capturarTM(tm_actual);
+    quitarBackground();
     var seEjecuto = tm_actual.ejecUnaVez();
     publicarTMsinCodigo(tm_actual);
 }
@@ -88,8 +90,22 @@ function marcar(linea){
     editor.markText({line: linea, ch: 0}, {line: linea, ch: 100}, {className: "styled-background"});
 }
 
-function highlightLine(lineNumber) {
+function ponerBackground(lineNumber) {
     var editorC = editor.CodeMirror;
     //Set line css class
     editor.addLineClass(lineNumber, 'background', 'TLineaActual');
+}
+
+function quitarBackground(){
+    var docEditor = editor.getDoc();
+    var noMaxLineas = docEditor.lineCount();
+    for (var i = 0; i < noMaxLineas; ++i){
+        var infoLinea = docEditor.lineInfo(i);
+        if (infoLinea.bgClass === undefined) continue;
+        if (infoLinea.bgClass == null) continue;
+        if (infoLinea.bgClass.includes('TLineaActual')){
+            docEditor.removeLineClass(i,'background','TLineaActual');
+            break;
+        }
+    }
 }
