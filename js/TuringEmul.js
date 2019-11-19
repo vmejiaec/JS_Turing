@@ -39,8 +39,10 @@ function publicarTM(tm){
     document.getElementById("TPos").innerText = tm.posCabeza;
     document.getElementById("TLinea").innerText = tm.lineaEjec;
     editor.setValue(tm.code);
-    if (!tm.parada) 
+    if (!tm.parada) {
+        quitarBackground();
         ponerBackground(tm.lineaEjec);
+    }
 
     // Publico en los campos de edición
     document.getElementById("TCintaEdit").value = tm.cinta;
@@ -57,8 +59,10 @@ function publicarTMsinCodigo(tm){
     document.getElementById("TPos").innerText = tm.posCabeza;
     document.getElementById("TLinea").innerText = tm.lineaEjec;
     //editor.setValue(tm.code);
-    if (!tm.parada) 
+    if (!tm.parada) {
+        quitarBackground();
         ponerBackground(tm.lineaEjec);
+    }
 
     // Publico en los campos de edición
     document.getElementById("TCintaEdit").value = tm.cinta;
@@ -79,11 +83,17 @@ function carga(){
     console.log(""+tm_actual);
 }
 
-function run(){
+function ejecutarUnaVez(){
     capturarTM(tm_actual);
-    quitarBackground();
     var seEjecuto = tm_actual.ejecUnaVez();
     publicarTMsinCodigo(tm_actual);
+}
+
+function run(){
+    capturarTM(tm_actual);
+
+    if(tm_actual.ejecUnaVez()){}
+
 }
 
 function marcar(linea){
@@ -108,4 +118,62 @@ function quitarBackground(){
             break;
         }
     }
+}
+
+function StopButton()
+{
+	if( hRunTimer != null ) {
+		SetStatusMessage( "Paused; click 'Run' or 'Step' to resume." );
+		EnableControls( true, true, false, true);
+		StopTimer();
+	}
+}
+
+function EnableControls( bStep, bRun, bParar, bCargar )
+{
+  document.getElementById( 'Step' ).disabled = !bStep;
+  document.getElementById( 'Run' ).disabled = !bRun;
+  document.getElementById( 'Parar' ).disabled = !bParar;
+  document.getElementById( 'Cargar' ).disabled = !bCargar;
+}
+
+/* Run(): run the TM until it halts or until user interrupts it */
+function Run()
+{
+    if( Step() ) {
+        hRunTimer = window.setTimeout( Run, 50 );
+    }
+}
+
+/* RunStep(): triggered by the run timer. Calls Step(); stops running if Step() returns false. */
+function RunStep()
+{
+	if( !Step() ) {
+		StopTimer();
+	}
+}
+
+function StopButton()
+{
+	if( hRunTimer != null ) {
+		SetStatusMessage( "Paused; click 'Run' or 'Step' to resume." );
+		EnableControls( true, true, false, true, true, true, true );
+		StopTimer();
+	}
+}
+
+/* StopTimer(): Deactivate the run timer. */
+function StopTimer()
+{
+	if( hRunTimer != null ) {
+		window.clearInterval( hRunTimer );
+		hRunTimer = null;
+	}
+}
+
+function RunButton()
+{
+	SetStatusMessage( "Running..." );
+	EnableControls( false, false, true, false, false, false, false );
+	Run();
 }
