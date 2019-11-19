@@ -31,6 +31,11 @@ TMachine.prototype.ejecUnaVez = function() {
         linea = linea.replace(/\t/g,' ');
         linea = linea.trim();
         linea = linea.trim().replace(/\s\s+/g, ' ');
+        // Eliminamos cualquier texto que se encuentre luego de la marca para comentarios
+        var posMarcaComentarios = linea.indexOf('//');
+        if (posMarcaComentarios > -1){  
+            linea = linea.substring(0,posMarcaComentarios);
+        }
         // Si la linea está vacía salta la verificación
         if (linea == '') continue;
         // Separa las instrucciones que hay en la línea

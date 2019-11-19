@@ -6,8 +6,10 @@ function TM_Ejemplo(){
         "012345",
         0,
         "Inicio",
-        "Inicio 0 0 R Inicio "  + "\n" +
-        "Inicio 1 1 R Inicio "  + "\n" +
+        " // Programa para pruebas  "  + "\n" +
+        "Inicio 0 0 R Inicio  // Comentario"  + "\n" +
+        "Inicio 1 1 R Inicio//..Otro pegado "  + "\n" +
+        "//Inicio pegado "  + "\n" +
         "Inicio 2 1 L Salto "   + "\n" +
         "Inicio 3 2 L Salto "   + "\n" +
         "Inicio 4 3 L Salto "   + "\n" +

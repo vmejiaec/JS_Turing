@@ -26,7 +26,7 @@ editor.on("gutterClick", function(cm, n) {
 function makeMarker() {
     var marker = document.createElement("div");
     marker.style.color = "rgb(39, 179, 69)";
-    marker.innerHTML = "●";
+    marker.innerHTML = "●-";
     return marker;
 }
   
