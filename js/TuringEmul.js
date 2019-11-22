@@ -7,6 +7,9 @@
 //    }
 //}
 
+// Para manejar el timer que ejecuta repetidamente la MT.
+var hRunTimer = null;
+
 var tm_actual = TM_Ejemplo();
 var editor = CodeMirror.fromTextArea(document.getElementById("code"), 
     {   
@@ -96,6 +99,58 @@ function run(){
 
 }
 
+/* Run(): run the TM until it halts or until user interrupts it */
+//function Run()
+//{
+//    if( Step() ) {
+//        hRunTimer = window.setTimeout( Run, 50 );
+//    }
+//}
+
+function StopButton()
+{
+	if( hRunTimer != null ) {
+		SetStatusMessage( "Paused; click 'Run' or 'Step' to resume." );
+		EnableControls( true, true, false, true);
+		StopTimer();
+	}
+}
+
+/* RunStep(): triggered by the run timer. Calls Step(); stops running if Step() returns false. */
+function RunStep()
+{
+	if( !Step() ) {
+		StopTimer();
+	}
+}
+
+
+
+/* StopTimer(): Deactivate the run timer. */
+function StopTimer()
+{
+	if( hRunTimer != null ) {
+		window.clearInterval( hRunTimer );
+		hRunTimer = null;
+	}
+}
+
+function RunButton()
+{
+	SetStatusMessage( "Running..." );
+	EnableControls( false, false, true, false, false, false, false );
+	Run();
+}
+
+function StopButton()
+{
+	if( hRunTimer != null ) {
+		SetStatusMessage( "Paused; click 'Run' or 'Step' to resume." );
+		EnableControls( true, true, false, true, true, true, true );
+		StopTimer();
+	}
+}
+
 function marcar(linea){
     editor.markText({line: linea, ch: 0}, {line: linea, ch: 100}, {className: "styled-background"});
 }
@@ -120,16 +175,8 @@ function quitarBackground(){
     }
 }
 
-function StopButton()
-{
-	if( hRunTimer != null ) {
-		SetStatusMessage( "Paused; click 'Run' or 'Step' to resume." );
-		EnableControls( true, true, false, true);
-		StopTimer();
-	}
-}
 
-function EnableControls( bStep, bRun, bParar, bCargar )
+function habilitarControles( bStep, bRun, bParar, bCargar )
 {
   document.getElementById( 'Step' ).disabled = !bStep;
   document.getElementById( 'Run' ).disabled = !bRun;
@@ -137,43 +184,6 @@ function EnableControls( bStep, bRun, bParar, bCargar )
   document.getElementById( 'Cargar' ).disabled = !bCargar;
 }
 
-/* Run(): run the TM until it halts or until user interrupts it */
-function Run()
-{
-    if( Step() ) {
-        hRunTimer = window.setTimeout( Run, 50 );
-    }
-}
-
-/* RunStep(): triggered by the run timer. Calls Step(); stops running if Step() returns false. */
-function RunStep()
-{
-	if( !Step() ) {
-		StopTimer();
-	}
-}
-
-function StopButton()
-{
-	if( hRunTimer != null ) {
-		SetStatusMessage( "Paused; click 'Run' or 'Step' to resume." );
-		EnableControls( true, true, false, true, true, true, true );
-		StopTimer();
-	}
-}
-
-/* StopTimer(): Deactivate the run timer. */
-function StopTimer()
-{
-	if( hRunTimer != null ) {
-		window.clearInterval( hRunTimer );
-		hRunTimer = null;
-	}
-}
-
-function RunButton()
-{
-	SetStatusMessage( "Running..." );
-	EnableControls( false, false, true, false, false, false, false );
-	Run();
+function publicaMensaje(mensaje){
+    document.getElementById( 'Step' ).disabled = mensaje;
 }
