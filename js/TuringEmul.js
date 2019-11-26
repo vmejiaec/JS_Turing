@@ -101,6 +101,7 @@ function ejecutarUnaVez_SinCaptura(){
 
 function RunButton()
 {
+    capturarTM(tm_actual);
 	publicarMensaje( "Running..." );
 	habilitarControles( false, false, true, false);
 	Run();
