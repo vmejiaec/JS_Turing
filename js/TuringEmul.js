@@ -85,6 +85,8 @@ function carga(){
     publicarTM(tm_actual);
     publicarMensaje("Cargando una máquina de Turing de prueba.");
     console.log(""+tm_actual);
+    var jsonTM = JSON.stringify(tm_actual);
+    console.log("JSON: "+ jsonTM);
 }
 
 function ejecutarUnaVez(){
