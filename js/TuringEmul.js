@@ -89,6 +89,23 @@ function carga(){
     console.log("JSON: "+ jsonTM);
 }
 
+function apiGET_TM_Web(){
+    var request = new XMLHttpRequest();
+    request.open('GET','http://localhost:3000/TM_maquinas');
+    request.onload = function(){
+        var listaMT = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400){
+            listaMT.forEach( tmObj => {
+                var tm =  new TMachine(tmObj.id, tmObj.cinta, tmObj.posCabeza, tmObj.estado, tmObj.code);
+                console.log("-- "+tm.toString());
+            });
+        } else {
+            console.log('Error del API REST de las máquinas de Turing');
+        }
+    }
+    request.send();
+}
+
 function ejecutarUnaVez(){
     capturarTM(tm_actual);
     tm_actual.ejecUnaVez();
