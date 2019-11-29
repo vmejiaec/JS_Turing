@@ -1,61 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="lib/codemirror.css">
-    <link rel="stylesheet" href="lib/addon/dialog/dialog.css">
-    <link rel="stylesheet" href="lib/addon/search/matchesonscrollbar.css">
+    <link rel="stylesheet" href="lib/codemirror.css" />
+    <link rel="stylesheet" href="lib/addon/dialog/dialog.css" />
+    <link rel="stylesheet" href="lib/addon/search/matchesonscrollbar.css" />
     <style>
-            .breakpoints {width: .6em;}
-            .breakpoint { color: #E25E26; }
-            .CodeMirror {border: 1px solid #aaa;}
-            .styled-background { background-color:  	#EDAC64; }
-            .TCabeza { color: red ; display:inline; margin:2px;text-decoration: underline wavy ; font-size:large;}
-            .TLineaActual {background-color: rgb(73, 177, 209); }
+      .breakpoints {
+        width: 0.6em;
+      }
+      .breakpoint {
+        color: #e25e26;
+      }
+      .CodeMirror {
+        border: 1px solid #aaa;
+      }
+      .styled-background {
+        background-color: #edac64;
+      }
+      .TCabeza {
+        color: red;
+        display: inline;
+        margin: 2px;
+        text-decoration: underline wavy;
+        font-size: large;
+      }
+      .TLineaActual {
+        background-color: rgb(73, 177, 209);
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>La Máquina de Turing</h1>
     <div id="TuringMachine">
-        <label id="lblCinta">Cinta</label>
-        <div id="TCinta">11<div class="TCabeza">0</div>1000</div>
-        <input type="text" id=TCintaEdit size="100%">
-        <br>
-            <table>
-                <tbody>
-                    <tr>
-                    <td >Pos:</td>
-                    <td style="width: 50px;"><label id="TPos"> </label></td>
-                    <td><input type="text" id="TPosEdit"></td>
-                    </tr>
-                    <tr>
-                    <td >Estado:</td>
-                    <td style="width: 50px;"><label id="TEstado"> </label></td>
-                    <td><input type="text" id="TEstadoEdit"></td>
-                    </tr>
-                    <tr>
-                    <td >No Línea: </td>
-                    <td style="width: 50px;"><label id="TLinea"> </label></td>
-                    <td >Parada: <label id="TParada"> </label></td>
-                    </tr>
-                </tbody>
-            </table>        
+      <label id="lblCinta">Cinta</label>
+      <div id="TCinta">
+        11
+        <div class="TCabeza">0</div>
+        1000
+      </div>
+      <input type="text" id="TCintaEdit" size="100%" />
+      <br />
+      <table>
+        <tbody>
+          <tr>
+            <td>Pos:</td>
+            <td style="width: 50px;"><label id="TPos"> </label></td>
+            <td><input type="text" id="TPosEdit" /></td>
+          </tr>
+          <tr>
+            <td>Estado:</td>
+            <td style="width: 50px;"><label id="TEstado"> </label></td>
+            <td><input type="text" id="TEstadoEdit" /></td>
+          </tr>
+          <tr>
+            <td>No Línea:</td>
+            <td style="width: 50px;"><label id="TLinea"> </label></td>
+            <td>Parada: <label id="TParada"> </label></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div>
-        <button id="Cargar" type="button" onclick="carga()">Carga</button>
-        <button id="Step" type="button" onclick="ejecutarUnaVez()">Step</button>
-        <button id="Run" type="button" onclick="RunButton()">Run</button>
-        <button id="Parar" type="button" onclick="StopButton()">Parar</button>
-        <button id="ListaTM" type="button" onclick="apiGET_TM_Web()">Listar</button>
+      <button id="Cargar" type="button" onclick="carga()">Carga</button>
+      <button id="Step" type="button" onclick="ejecutarUnaVez()">Step</button>
+      <button id="Run" type="button" onclick="RunButton()">Run</button>
+      <button id="Parar" type="button" onclick="StopButton()">Parar</button>
+      <button id="ListaTM" type="button" onclick="apiGET_TM_Web()">
+        Listar
+      </button>
     </div>
     <div>
-        <label id="TMensaje">...</label>
+      <label id="TMensaje">...</label>
     </div>
     <form style="width: 400px;">
-        <textarea id="code" name="code">...</textarea>
+      <textarea id="code" name="code">...</textarea>
     </form>
 
     <!--Librería CodeMirror para simular editor en textArea-->
@@ -75,5 +97,5 @@
     <script src="js/TM_Clases.js"></script>
     <script src="js/TM_Ejemplos.js"></script>
     <script src="js/TuringEmul.js"></script>
-</body>
+  </body>
 </html>

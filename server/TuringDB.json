@@ -1,5 +1,15 @@
 {
-"TM_maquinas" : [
-{"id":"Busca Fin Derecha","cinta":"012345","posCabeza":0,"estado":"Inicio","code":" // Programa para pruebas  \nInicio 0 0 R Inicio  // Comentario\nInicio 1 1 R Inicio//..Otro pegado \n//Inicio pegado \nInicio 2 1 L Salto \nInicio 3 2 L Salto \nInicio 4 3 L Salto \nInicio 5 4 L Salto \nSalto 0 0 R Salto \nSalto 1 1 L Regresa \nSalto 4 3 L Regresa \nSalto 5 4 L Regresa \nRegresa 0 0 R Inicio \nRegresa 1 1 L Regresa \nRegresa 2 1 L Fin \nRegresa 3 2 L Fin \nFin 1 1 L Inicio \nInicio A A L Salto \nSalto B B R Salto \nSalto X y R Regresa ","estado_ini":"Inicio","cinta_ini":"012345","lineaEjec":-1,"parada":false}
-]    
+  "TM_maquinas": [
+    {
+      "id": "Busca Fin Derecha",
+      "cinta": "012345",
+      "posCabeza": 0,
+      "estado": "Inicio",
+      "code": " // Programa para pruebas  \nInicio 0 0 R Inicio  // Comentario\nInicio 1 1 R Inicio//..Otro pegado \n//Inicio pegado \nInicio 2 1 L Salto \nInicio 3 2 L Salto \nInicio 4 3 L Salto \nInicio 5 4 L Salto \nSalto 0 0 R Salto \nSalto 1 1 L Regresa \nSalto 4 3 L Regresa \nSalto 5 4 L Regresa \nRegresa 0 0 R Inicio \nRegresa 1 1 L Regresa \nRegresa 2 1 L Fin \nRegresa 3 2 L Fin \nFin 1 1 L Inicio \nInicio A A L Salto \nSalto B B R Salto \nSalto X y R Regresa ",
+      "estado_ini": "Inicio",
+      "cinta_ini": "012345",
+      "lineaEjec": -1,
+      "parada": false
+    }
+  ]
 }
