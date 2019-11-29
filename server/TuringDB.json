@@ -10,6 +10,28 @@
       "cinta_ini": "012345",
       "lineaEjec": -1,
       "parada": false
+    },
+    {
+      "id": "Busca Fin Derecha 2",
+      "cinta": "044444",
+      "posCabeza": 0,
+      "estado": "Inicio",
+      "code": " // Programa para pruebas  \nInicio 0 0 R Inicio  // Comentario\nInicio 1 1 R Inicio//..Otro pegado \n//Inicio pegado \nInicio 2 1 L Salto \nInicio 3 2 L Salto \nInicio 4 3 L Salto \nInicio 5 4 L Salto \nSalto 0 0 R Salto \nSalto 1 1 L Regresa \n",
+      "estado_ini": "Inicio",
+      "cinta_ini": "012345",
+      "lineaEjec": -1,
+      "parada": false
+    },
+    {
+      "id": "Busca Fin ",
+      "cinta": "044444",
+      "posCabeza": 0,
+      "estado": "Inicio",
+      "code": " // Programa para pruebas  \nInicio 0 0 R Inicio  // Comentario\nInicio 1 1 R Inicio//..Otro pegado \n//Inicio pegado \nInicio 2 1 L Salto \n",
+      "estado_ini": "Inicio",
+      "cinta_ini": "012345",
+      "lineaEjec": -1,
+      "parada": false
     }
   ]
 }

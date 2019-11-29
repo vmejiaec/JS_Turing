@@ -38,6 +38,7 @@ function makeMarker() {
 function publicarTM(tm) {
   // TODO
   // Debería provenir de la clase TM con un HTML preformateado listo para salir a la página web
+  document.getElementById("TId").value = tm.id;
   document.getElementById("TCinta").innerHTML = tm.cintaHtml();
   document.getElementById("TEstado").innerText = tm.estado;
   document.getElementById("TParada").innerText = tm.parada;
@@ -58,6 +59,7 @@ function publicarTM(tm) {
 function publicarTMsinCodigo(tm) {
   // TODO
   // Debería provenir de la clase TM con un HTML preformateado listo para salir a la página web
+  document.getElementById("TId").value = tm.id;
   document.getElementById("TCinta").innerHTML = tm.cintaHtml();
   document.getElementById("TEstado").innerText = tm.estado;
   document.getElementById("TParada").innerText = tm.parada;
@@ -76,6 +78,7 @@ function publicarTMsinCodigo(tm) {
 }
 
 function capturarTM(tm) {
+  tm.id = document.getElementById("TId").value;
   tm.cinta = document.getElementById("TCintaEdit").value;
   tm.estado = document.getElementById("TEstadoEdit").value;
   tm.posCabeza = parseInt(document.getElementById("TPosEdit").value);
@@ -112,6 +115,19 @@ function apiGET_TM_Web() {
     }
   };
   request.send();
+}
+
+function grabarTM_Web(){
+    capturarTM(tm_actual);
+    var url = 'http://localhost:3000/TM_maquinas';
+    var dataJSON = JSON.stringify(tm_actual);
+    fetch(url,{
+        method: 'POST',
+        body: dataJSON,
+        headers: {'Content-Type':'application/json'}
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Exito: ',response));
 }
 
 function ejecutarUnaVez() {
