@@ -1,5 +1,8 @@
 <html>
   <head>
+
+     
+
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -28,7 +31,13 @@
         // Set chart options
         var options = {'title':'Distribución de las votaciones ITQ',
                        'width':600,
-                       'height':500};
+                       'height':500,
+                        'is3D': true,
+                        slices: {
+                            1:{offset:0.3},
+                            2:{offset:0.5}
+                        }
+                      };
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -40,5 +49,8 @@
   <body>
     <!--Div that will hold the pie chart-->
     <div id="chart_div"></div>
+
+    <p>   https://google-developers.appspot.com/chart/interactive/docs/basic_load_libs</p>
+    <p>   https://google-developers.appspot.com/chart/interactive/docs/gallery/timeline</p>
   </body>
 </html>
