@@ -72,15 +72,19 @@
       <button id="Run" type="button" onclick="RunButton()">Run</button>
       <button id="Parar" type="button" onclick="StopButton()">Parar</button>
       <button id="ListaTM" type="button" onclick="apiGET_TM_Web()">Listar</button>
-      <button id="GuardarWeb" type="button" onclick="grabarTM_Web()">Listar</button>
+      <button id="GuardarWeb" type="button" onclick="grabarTM_Web()">Guardar nuevo</button>
+      <button id="CrearLista" type="button" onclick="crearLista()">Crear Lista</button>
     </div>
     <div>
       <label id="TMensaje">...</label>
     </div>
-    <form style="width: 400px;">
+    <form style="width: 400px; float: left;">
       <textarea id="code" name="code">...</textarea>
     </form>
+<div id="TM_Lista" style="float: left;margin-left: 10px;">
+  <h4 style="margin: 0%;">Resultado de la consulta al server Json</h4>
 
+</div>
     <!--Librería CodeMirror para simular editor en textArea-->
     <script src="lib/codemirror.js"></script>
     <script src="lib/mode/javascript/javascript.js"></script>
@@ -93,7 +97,7 @@
     <script src="lib/addon/search/matchesonscrollbar.js"></script>
     <script src="lib/addon/search/jump-to-line.js"></script>
 
-    <script src="../addon/selection/mark-selection.js"></script>
+    <script src="lib/addon/selection/mark-selection.js"></script>
     <!--La librería Turing-->
     <script src="js/TM_Clases.js"></script>
     <script src="js/TM_Ejemplos.js"></script>

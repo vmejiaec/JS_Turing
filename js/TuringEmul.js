@@ -100,6 +100,8 @@ function apiGET_TM_Web() {
   request.onload = function() {
     var listaMT = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
+      // Crea una lista de objetos TM
+      var listaObjTM = [];
       listaMT.forEach(tmObj => {
         var tm = new TMachine(
           tmObj.id,
@@ -108,8 +110,10 @@ function apiGET_TM_Web() {
           tmObj.estado,
           tmObj.code
         );
-        console.log("-- " + tm.toString());
+        listaObjTM.push(tm);
       });
+      // Publica en la páguina el resultado
+
     } else {
       console.log("Error del API REST de las máquinas de Turing");
     }
@@ -211,4 +215,48 @@ function habilitarControles(bStep, bRun, bParar, bCargar) {
 
 function publicarMensaje(mensaje) {
   document.getElementById("TMensaje").innerHTML = mensaje;
+}
+
+
+// --------------------------------------------
+// Crear el resultado HTML en la página
+// --------------------------------------------
+
+function crearLista(listaMT){
+  const app = document.getElementById("TM_Lista");
+  const iconoTM = document.createElement('img');
+  iconoTM.src='./img/IconoTuring.png';
+  const lista = document.createElement('div');
+  lista.setAttribute('class','lista');
+
+  const tabla = document.createElement('table');
+
+  listaMT.forEach(tm => {
+    tabla.appendChild(crearFila(tm));
+  });
+
+  lista.appendChild(tabla);
+  app.appendChild(iconoTM);
+  app.appendChild(lista);
+  
+}
+
+function crearFila(tm){
+  const fila = document.createElement('tr');
+  const celdaId = document.createElement('td');
+  const celdaCinta = document.createElement('td');
+  const celdaPosCabeza = document.createElement('td');
+  const celdaEstado = document.createElement('td');
+
+  celdaId.textContent = tm.id;
+  celdaCinta.textContent = tm.cinta;
+  celdaPosCabeza.textContent = tm.posCabeza;
+  celdaEstado.textContent = tm.estado;
+
+  fila.appendChild(celdaId);
+  fila.appendChild(celdaCinta);
+  fila.appendChild(celdaPosCabeza);
+  fila.appendChild(celdaEstado);
+
+  return fila;
 }
