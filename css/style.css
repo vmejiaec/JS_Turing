@@ -1,0 +1,17 @@
+table tr:nth-child(even) {
+    background: rgb(172, 171, 171);
+  }
+  
+table tr:nth-child(odd) {
+    background: rgb(199, 199, 199);
+  }
+
+th {
+    background: SteelBlue;
+    color: white;
+  }
+
+th,  td {
+    padding: 5px 10px;
+  }
+  
