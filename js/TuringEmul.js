@@ -87,76 +87,6 @@ function capturarTM(tm) {
   tm.code = editor.getValue();
 }
 
-function carga(tmId) {
-  // Busca la máquina con el id del parámetro
-  apiGET_TM_ById(tmId);
-}
-
-function apiGET_TM_ById(tmId){
-  var request = new XMLHttpRequest();
-  request.open("GET", "http://localhost:3000/TM_maquinas"+"/"+tmId);
-  request.onload = function() {
-    var tmObj = JSON.parse( this.response);
-    if (request.status >= 200 && request.status < 400) {
-      // Crea un objeto TM
-        var tm = new TMachine(
-          tmObj.id,
-          tmObj.cinta,
-          tmObj.posCabeza,
-          tmObj.estado,
-          tmObj.code
-        );
-      // Publica en la páguina el resultado
-      tm_actual = tm;
-      publicarTM(tm_actual);
-      publicarMensaje("Cargando una máquina de Turing: "+tmId);
-    } else {
-      console.log("Error del API REST GET by Id");
-    }
-  };
-  request.send();
-}
-
-function apiGET_TM_Web() {
-  var request = new XMLHttpRequest();
-  request.open("GET", "http://localhost:3000/TM_maquinas");
-  request.onload = function() {
-    var listaMT = JSON.parse(this.response);
-    if (request.status >= 200 && request.status < 400) {
-      // Crea una lista de objetos TM
-      var listaObjTM = [];
-      listaMT.forEach(tmObj => {
-        var tm = new TMachine(
-          tmObj.id,
-          tmObj.cinta,
-          tmObj.posCabeza,
-          tmObj.estado,
-          tmObj.code
-        );
-        listaObjTM.push(tm);
-      });
-      // Publica en la páguina el resultado
-      crearLista(listaObjTM);
-    } else {
-      console.log("Error del API REST de las máquinas de Turing");
-    }
-  };
-  request.send();
-}
-
-function grabarTM_Web(){
-    capturarTM(tm_actual);
-    var url = 'http://localhost:3000/TM_maquinas';
-    var dataJSON = JSON.stringify(tm_actual);
-    fetch(url,{
-        method: 'POST',
-        body: dataJSON,
-        headers: {'Content-Type':'application/json'}
-    }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Exito: ',response));
-}
-
 function ejecutarUnaVez() {
   capturarTM(tm_actual);
   tm_actual.ejecUnaVez();
@@ -240,6 +170,98 @@ function publicarMensaje(mensaje) {
   document.getElementById("TMensaje").innerHTML = mensaje;
 }
 
+
+// --------------------------------------------
+// Operaciones REST
+// --------------------------------------------
+
+function actualizarTM_Web(){
+  // PUT
+  capturarTM(tm_actual);
+  var url = 'http://localhost:3000/TM_maquinas'+'/'+tm_actual.id;
+  var dataJSON = JSON.stringify(tm_actual);
+
+  var datos = {
+      method: 'PUT',
+      body: dataJSON,
+      headers: {'Content-Type':'application/json'}
+  }
+
+  fetch(url,datos)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Exito: ',response));
+}
+
+function carga(tmId) {
+  // Busca la máquina con el id del parámetro
+  apiGET_TM_ById(tmId);
+}
+
+function apiGET_TM_ById(tmId){
+  var request = new XMLHttpRequest();
+  request.open("GET", "http://localhost:3000/TM_maquinas"+"/"+tmId);
+  request.onload = function() {
+    var tmObj = JSON.parse( this.response);
+    if (request.status >= 200 && request.status < 400) {
+      // Crea un objeto TM
+        var tm = new TMachine(
+          tmObj.id,
+          tmObj.cinta,
+          tmObj.posCabeza,
+          tmObj.estado,
+          tmObj.code
+        );
+      // Publica en la páguina el resultado
+      tm_actual = tm;
+      publicarTM(tm_actual);
+      publicarMensaje("Cargando una máquina de Turing: "+tmId);
+    } else {
+      console.log("Error del API REST GET by Id");
+    }
+  };
+  request.send();
+}
+
+function apiGET_TM_Web() {
+  var request = new XMLHttpRequest();
+  request.open("GET", "http://localhost:3000/TM_maquinas");
+  request.onload = function() {
+    var listaMT = JSON.parse(this.response);
+    if (request.status >= 200 && request.status < 400) {
+      // Crea una lista de objetos TM
+      var listaObjTM = [];
+      listaMT.forEach(tmObj => {
+        var tm = new TMachine(
+          tmObj.id,
+          tmObj.cinta,
+          tmObj.posCabeza,
+          tmObj.estado,
+          tmObj.code
+        );
+        listaObjTM.push(tm);
+      });
+      // Publica en la páguina el resultado
+      crearLista(listaObjTM);
+    } else {
+      console.log("Error del API REST de las máquinas de Turing");
+    }
+  };
+  request.send();
+}
+
+function grabarTM_Web(){
+    capturarTM(tm_actual);
+    var url = 'http://localhost:3000/TM_maquinas';
+    var dataJSON = JSON.stringify(tm_actual);
+    fetch(url,{
+        method: 'POST',
+        body: dataJSON,
+        headers: {'Content-Type':'application/json'}
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Exito: ',response));
+}
 
 // --------------------------------------------
 // Crear el resultado HTML en la página
@@ -333,8 +355,9 @@ function crearFila(tm){
   fila.appendChild(celdaPosCabeza);
   fila.appendChild(celdaEstado);
   fila.appendChild(celdaCinta);
-  fila.appendChild(celdaMenuBorrar);
+  
   fila.appendChild(celdaMenuCargar);
+  fila.appendChild(celdaMenuBorrar);
 
   return fila;
 }

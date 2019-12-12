@@ -5,47 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+    
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="lib/codemirror.css" />
     <link rel="stylesheet" href="lib/addon/dialog/dialog.css" />
     <link rel="stylesheet" href="lib/addon/search/matchesonscrollbar.css" />
-    <style>
-      .breakpoints {
-        width: 0.6em;
-      }
-      .breakpoint {
-        color: #e25e26;
-      }
-      .CodeMirror {
-        border: 1px solid #aaa;
-      }
-      .styled-background {
-        background-color: #edac64;
-      }
-      .TCabeza {
-        color: red;
-        display: inline;
-        margin: 2px;
-        text-decoration: underline wavy;
-        font-size: large;
-      }
-      .TLineaActual {
-        background-color: rgb(73, 177, 209);
-      }
-    </style>
+
   </head>
   <body>
-    <h1>La Máquina de Turing</h1>
+  <h1>La Máquina de Turing</h1>
+  <div style="float: left;">
     <div id="TuringMachine">
        Id:  <input type="text" id="TId"  /> 
        <br>
       <label id="lblCinta">Cinta</label>
       <div id="TCinta">
         11
-        <div class="TCabeza">0</div>
+      <div class="TCabeza">0</div>
         1000
       </div>
-      <input type="text" id="TCintaEdit" size="100%" />
+      <input type="text" id="TCintaEdit" />
       <br />
       <table>
         <tbody>
@@ -67,14 +46,16 @@
         </tbody>
       </table>
     </div>
+    
     <div>
-      <button id="Cargar" type="button" onclick="carga('Victor03')">Carga</button>
       <button id="Step" type="button" onclick="ejecutarUnaVez()">Step</button>
       <button id="Run" type="button" onclick="RunButton()">Run</button>
       <button id="Parar" type="button" onclick="StopButton()">Parar</button>
+    </div>
+    <div>
       <button id="ListaTM" type="button" onclick="apiGET_TM_Web()">Listar</button>
-      <button id="GuardarWeb" type="button" onclick="grabarTM_Web()">Guardar nuevo</button>
-      <button id="CrearLista" type="button" onclick="crearLista()">Crear Lista</button>
+      <button id="GuardarWeb" type="button" onclick="actualizarTM_Web()">Guardar</button>
+      <button id="GuardarWeb" type="button" onclick="grabarTM_Web()">Crear</button>
     </div>
     <div>
       <label id="TMensaje">...</label>
@@ -82,11 +63,13 @@
     <form style="width: 400px; float: left;">
       <textarea id="code" name="code">...</textarea>
     </form>
-<div id="TM_Lista" style="float: left;margin-left: 10px;">
-  <h4 style="margin: 0%;">Resultado de la consulta al server Json</h4>
+  </div>
 
-</div>
-    <!--Librería CodeMirror para simular editor en textArea-->
+  <div id="TM_Lista" style="float: left;margin-left: 10px;">
+    <h4 style="margin: 0%;">Resultado de la consulta al server Json</h4>
+  </div>
+  
+  <!--Librería CodeMirror para simular editor en textArea-->
     <script src="lib/codemirror.js"></script>
     <script src="lib/mode/javascript/javascript.js"></script>
     <script src="lib/addon/selection/active-line.js"></script>

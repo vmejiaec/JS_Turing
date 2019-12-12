@@ -15,3 +15,25 @@ th,  td {
     padding: 5px 10px;
   }
   
+  .breakpoints {
+    width: 0.6em;
+  }
+  .breakpoint {
+    color: #e25e26;
+  }
+  .CodeMirror {
+    border: 1px solid #aaa;
+  }
+  .styled-background {
+    background-color: #edac64;
+  }
+  .TCabeza {
+    color: red;
+    display: inline;
+    margin: 2px;
+    text-decoration: underline wavy;
+    font-size: large;
+  }
+  .TLineaActual {
+    background-color: rgb(73, 177, 209);
+  }
