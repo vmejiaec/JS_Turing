@@ -1,17 +1,13 @@
 "use strict";
 
-//  Por si el navegador no tiene la función trim
-//if(typeof String.prototype.trim !== 'function') {
-//    String.prototype.trim = function() {
-//        return this.replace(/^\s+|\s+$/g, '');
-//    }
-//}
-
 // Para manejar el timer que ejecuta repetidamente la MT.
 var hRunTimer = null;
 
-//var tm_actual = TM_Ejemplo();
-var tm_actual ;
+
+
+// --------------------------------------------------------------------------------
+// Configuración del editor
+// --------------------------------------------------------------------------------
 
 var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
   mode: "javascript",
@@ -36,6 +32,14 @@ function makeMarker() {
   marker.innerHTML = "●-";
   return marker;
 }
+
+// La máquina de turing actualmente presente en el editor
+var tm_actual = new TMachine('Turing','101010101',2,'Ini','Ini 1 1 R Ini');
+publicarTM(tm_actual);
+
+// --------------------------------------------------------------------------------
+// funciones para publicar
+// --------------------------------------------------------------------------------
 
 function publicarTM(tm) {
   // TODO
@@ -79,16 +83,24 @@ function publicarTMsinCodigo(tm) {
   document.getElementById("TPosEdit").value = tm.posCabeza;
 }
 
-function capturarTM(tm) {
-  tm.id = document.getElementById("TId").value;
-  tm.cinta = document.getElementById("TCintaEdit").value;
-  tm.estado = document.getElementById("TEstadoEdit").value;
-  tm.posCabeza = parseInt(document.getElementById("TPosEdit").value);
-  tm.code = editor.getValue();
+function capturarTM() {
+
+  return new TMachine(
+    document.getElementById("TId").value,
+    document.getElementById("TCintaEdit").value,
+    parseInt(document.getElementById("TPosEdit").value),
+    document.getElementById("TEstadoEdit").value,
+    editor.getValue()
+  );
+
 }
 
+// --------------------------------------------------------------------------------
+// Interpreta el código y ejecuta la máquina de Turing
+// --------------------------------------------------------------------------------
+
 function ejecutarUnaVez() {
-  capturarTM(tm_actual);
+  tm_actual = capturarTM();
   tm_actual.ejecUnaVez();
   publicarTMsinCodigo(tm_actual);
 }
@@ -100,9 +112,9 @@ function ejecutarUnaVez_SinCaptura() {
 }
 
 function RunButton() {
-  capturarTM(tm_actual);
+  tm_actual = capturarTM();
   publicarMensaje("Running...");
-  habilitarControles(false, false, true, false);
+  habilitarControles(false, false, true);
   Run();
 }
 
@@ -116,7 +128,7 @@ function Run() {
 function StopButton() {
   if (hRunTimer != null) {
     publicarMensaje("Ejecución detenida por botón <Parar>.");
-    habilitarControles(true, true, false, true);
+    habilitarControles(true, true, false);
     StopTimer();
   }
 }
@@ -129,7 +141,7 @@ function StopTimer() {
   }
 }
 
-// _______________________________________
+// --------------------------------------------------------------------------------
 
 function marcar(linea) {
   editor.markText(
@@ -159,11 +171,11 @@ function quitarBackground() {
   }
 }
 
-function habilitarControles(bStep, bRun, bParar, bCargar) {
+function habilitarControles(bStep, bRun, bParar) {
   document.getElementById("Step").disabled = !bStep;
   document.getElementById("Run").disabled = !bRun;
   document.getElementById("Parar").disabled = !bParar;
-  document.getElementById("Cargar").disabled = !bCargar;
+  
 }
 
 function publicarMensaje(mensaje) {
@@ -177,7 +189,7 @@ function publicarMensaje(mensaje) {
 
 function actualizarTM_Web(){
   // PUT
-  capturarTM(tm_actual);
+  tm_actual = capturarTM();
   var url = 'http://localhost:3000/TM_maquinas'+'/'+tm_actual.id;
   var dataJSON = JSON.stringify(tm_actual);
 
@@ -251,7 +263,7 @@ function apiGET_TM_Web() {
 }
 
 function grabarTM_Web(){
-    capturarTM(tm_actual);
+  tm_actual = capturarTM();
     var url = 'http://localhost:3000/TM_maquinas';
     var dataJSON = JSON.stringify(tm_actual);
     fetch(url,{

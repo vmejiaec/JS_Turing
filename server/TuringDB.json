@@ -98,6 +98,28 @@
       "cinta_ini": "012345",
       "lineaEjec": -1,
       "parada": false
+    },
+    {
+      "id": "Turing",
+      "cinta": "101010101",
+      "posCabeza": 3,
+      "estado": "Ini",
+      "code": "// La máquina por defecto\nIni 1 1 R Ini",
+      "estado_ini": "Ini",
+      "cinta_ini": "101010101",
+      "lineaEjec": -1,
+      "parada": false
+    },
+    {
+      "id": "Cambia UNO por CERO",
+      "cinta": "11111000_",
+      "posCabeza": 8,
+      "estado": "INI",
+      "code": "// Actualizar\nINI 1 0 R INI\nINI 0 0 L INI",
+      "estado_ini": "INI",
+      "cinta_ini": "11111000_",
+      "lineaEjec": -1,
+      "parada": false
     }
   ]
 }
