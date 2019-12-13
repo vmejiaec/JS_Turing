@@ -60,10 +60,10 @@
       "cinta": "011345",
       "posCabeza": 0,
       "estado": "Regresa",
-      "code": "// \n//  Victor 01\n//\nInicio 0 0 R Inicio  // Comentario\nInicio 1 1 R Inicio//..Otro pegado \n//Inicio pegado \nInicio 2 1 L Salto \nInicio 3 2 L Salto \nInicio 4 3 L Salto \nInicio 5 4 L Salto \nSalto 0 0 R Salto \nSalto 1 1 L Regresa \nSalto 4 3 L Regresa ",
-      "estado_ini": "Inicio",
-      "cinta_ini": "012345",
-      "lineaEjec": 11,
+      "code": "// \n//  Victor 03 actualizado\n//\nInicio 0 0 R Inicio  // Comentario\nInicio 1 1 R Inicio//..Otro pegado \n//Inicio pegado \nInicio 2 1 L Salto \nInicio 3 2 L Salto \nInicio 4 3 L Salto \nInicio 5 4 L Salto \nSalto 0 0 R Salto \nSalto 1 1 L Regresa \nSalto 4 3 L Regresa ",
+      "estado_ini": "Regresa",
+      "cinta_ini": "011345",
+      "lineaEjec": -1,
       "parada": false
     },
     {
